@@ -1,0 +1,140 @@
+.ticket__content {
+  width: 100%;
+  padding: $pd-3 + $pd-1 0 0;
+
+  .ticket__form {
+    width: 90%;
+    padding: $pd-2 0;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 0 15px $color-black-1;
+    box-shadow: 0 0 15px $color-black-1;
+    background: -webkit-gradient(linear, left top, left bottom, from($color-white-0), to($color-gray-0));
+    background: linear-gradient(to bottom, $color-white-0, $color-gray-0);
+    border-radius: 10px;
+
+    .row {
+      margin: 0;
+
+      [class*="col-"] {
+        padding-right: $pd-0;
+      }
+
+      img {
+        width: 115%;
+      }
+
+      mat-form-field {
+        display: block;
+        @include text($color-black-0, $fs-0 + 1, $fw-bold-1);
+      }
+
+      .ticket__button {
+        margin: auto 0;
+        text-align: center;
+
+        button {
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mat-select-panel {
+  max-width: unset !important;
+}
+
+.mat-select-panel::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px $color-black-1;
+  border-radius: 10px;
+  background-color: $color-white-0;
+}
+
+.mat-select-panel::-webkit-scrollbar {
+  width: 12px;
+  background-color: $color-white-0;
+}
+
+.mat-select-panel::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px $color-black-1;
+  background-color: $color-gray-2;
+}
+
+@media (max-width: 992px) {
+  .ticket__content {
+    padding-top: $pd-2 + $pd-0;
+
+    .ticket__form {
+      padding: $pd-2 $pd-2;
+
+      .row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+
+        [class*="col-"] {
+          padding: 0;
+        }
+
+        .form__image {
+          grid-area: 1 / 1 / span 2 / span 2;
+          padding-right: $pd-1 + $pd-0;
+          margin: auto 0;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .form__movie {
+          grid-area: 1 / 3 / span 1 / span 4;
+          padding-right: $pd-2;
+        }
+
+        .form__cinema {
+          grid-area: 1 / 7 / span 1 / span 4;
+          padding-right: $pd-2;
+        }
+
+        .form__date {
+          grid-area: 2 / 3 / span 1 / span 4;
+          padding-right: $pd-2;
+        }
+
+        .form__session {
+          grid-area: 2 / 7 / span 1 / span 4;
+          padding-right: $pd-2;
+        }
+
+        .ticket__button {
+          grid-area: 1 / 11 / span 2 / span 2;
+
+          .mat-flat-button {
+            padding: 0 $pd-1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .ticket__content {
+    .ticket__form {
+      .row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        .form__image {
+          text-align: center;
+
+          img {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}

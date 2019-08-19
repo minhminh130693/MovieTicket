@@ -1,0 +1,41 @@
+<div class="event" id="event">
+  <div class="container">
+    <ul class="nav nav-pills content__title">
+      <li><i class="fa fa-angle-double-right arrow"></i></li>
+      <li class="nav-item content__item">
+        <a class="nav-link content__link active" data-toggle="pill" href="#promotionTab">ƯU ĐÃI</a>
+      </li>
+      <li class="nav-item content__item">
+        <a class="nav-link content__link" data-toggle="pill" href="#eventTab">SỰ KIỆN</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <ng-container *ngIf="listPromoMovie">
+        <div class="tab-pane container active" id="promotionTab">
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 event__item" *ngFor="let item of listPromoMovie | slice:0:showPromo">
+              <app-item-event-movie [event]="item"></app-item-event-movie>
+            </div>
+          </div>
+          <div class="button__viewmore">
+            <button type="button" class="btn section__button" *ngIf="showPromo < listPromoMovie.length"
+              (click)="viewMore('promo')">XEM THÊM</button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="listEventMovie">
+        <div class="tab-pane container fade" id="eventTab">
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 event__item" *ngFor="let item of listEventMovie | slice:0:showEvent">
+              <app-item-event-movie [event]="item"></app-item-event-movie>
+            </div>
+          </div>
+          <div class="button__viewmore">
+            <button type="button" class="btn section__button" *ngIf="showEvent < listEventMovie.length"
+              (click)="viewMore('event')">XEM THÊM</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

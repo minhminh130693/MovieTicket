@@ -1,0 +1,10 @@
+<div *ngIf="mapLink != '' && mapLink" class="modal fade modal__map" id="modalMap" (click)="closeMap()">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="close" data-dismiss="modal">&times;</div>
+        <iframe [src]="mapLink" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,201 @@
+.review {
+  padding-bottom: $pd-3 + $pd-1;
+  padding-top: $pd-4;
+  background-image: url("./../img/bg-1.png");
+  background-repeat: repeat;
+
+  .content__item {
+    .content__link {
+      @include text($color-black-0, $fs-0, $fw-bold-1);
+    }
+
+    .active {
+      @include text($color-white-0, $fs-0, $fw-bold-1);
+    }
+  }
+
+  .tab-content {
+    .row {
+      .review__items {
+        .row {
+          margin-bottom: $mg-3 - $mg-0;
+
+          .review__image {
+            padding: 0;
+
+            .review__imageitem {
+              -webkit-transition: all 0.35s;
+              transition: all 0.35s;
+              position: relative;
+
+              img {
+                width: 100%;
+              }
+
+              .review__overlay {
+                overflow: visible;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: -webkit-gradient(linear, left top, left bottom, from($color-black-1), to($color-black-3));
+                background: linear-gradient(to bottom, $color-black-1, $color-black-3);
+                opacity: 0;
+                -webkit-transition: all 0.35s;
+                transition: all 0.35s;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .review__content {
+            padding: 0 $pd-2;
+            margin: auto 0;
+
+            h6 {
+              padding: 0;
+
+              a {
+                @include text($color-red-0, $fs-0, $fw-bold);
+                letter-spacing: 0.5px;
+                -webkit-transition: all 0.35s;
+                transition: all 0.35s;
+
+                &:hover {
+                  color: $color-red-1;
+                  opacity: 0.9;
+                }
+              }
+            }
+
+            .review__star {
+              p {
+                margin-bottom: 0;
+                @include text($color-gray-1, $fs-1, $fw-bold-2);
+                letter-spacing: 0.5px;
+
+                span {
+                  padding-left: $pd-1;
+                  @include text($color-black-0, $fs-1, $fw-bold-2);
+                }
+
+                i {
+                  @include text($color-yellow-0, $fs-1, $fw-bold);
+                }
+
+                img {
+                  width: 20px;
+                }
+              }
+            }
+
+            .review__text,
+            .blog__text {
+              @include text($color-gray-1, $fs-1, $fw-bold-1);
+              padding-top: $pd-0;
+              text-align: justify;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              /* autoprefixer: ignore next */
+              -webkit-box-orient: vertical;
+
+              p {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .review__item {
+        &:hover {
+          .review__image {
+            .review__imageitem {
+              .review__overlay {
+                opacity: 1;
+              }
+            }
+          }
+
+          .review__content {
+            h6 {
+              a {
+                color: $color-red-1;
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .button__viewmore {
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .review {
+    .tab-content {
+      .row {
+        .review__items {
+          .row {
+            .review__content {
+              .review__text,
+              .blog__text {
+                -webkit-line-clamp: 3;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .review {
+    .tab-content {
+      .row {
+        .review__items {
+          .row {
+            .review__content {
+              .review__text,
+              .blog__text {
+                -webkit-line-clamp: 2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .review {
+    .tab-content {
+      .row {
+        .review__items {
+          .row {
+            padding: 0 $pd-3;
+
+            .review__content {
+              margin-top: $mg-2;
+              margin-bottom: $mg-2 + $mg-0;
+
+              .review__text,
+              .blog__text {
+                -webkit-line-clamp: 3;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

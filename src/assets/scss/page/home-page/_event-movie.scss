@@ -1,0 +1,40 @@
+.event {
+  padding-bottom: $pd-3 + $pd-1;
+  padding-top: $pd-4;
+
+  .row {
+    .event__item {
+      padding: 0 $pd-2;
+      margin-bottom: $mg-3;
+
+      .event__content {
+        position: relative;
+
+        img {
+          width: 100%;
+        }
+
+        .overlay {
+          .overlay__button {
+            width: 66%;
+          }
+        }
+      }
+    }
+  }
+
+  .button__viewmore {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .event {
+    padding-bottom: $pd-3 + $pd-1;
+    padding-top: $pd-4;
+
+    .row {
+      padding: 0 $pd-3;
+    }
+  }
+}

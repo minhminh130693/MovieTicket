@@ -1,0 +1,22 @@
+<div class="row review__item">
+  <div class="col-sm-4 review__image">
+    <div class="review__imageitem">
+      <img [src]="review.hinhAnh" alt="Review">
+      <a href="javascript:void(0)" class="review__overlay"></a>
+    </div>
+  </div>
+  <div class="col-sm-8 review__content">
+    <h6><a href="javascript:void(0)">{{review.tieuDe}}</a></h6>
+    <ng-container *ngIf="review.danhGiaReview != null">
+      <div class="review__star">
+        <p><i class="fa fa-star"></i>
+          <span>{{review.danhGiaReview}}</span>/10 ( <img src="assets/img/comment.png" alt="Comment">
+          {{review.phanHoi}})
+        </p>
+      </div>
+    </ng-container>
+    <div [ngClass]="{'review__text': review.danhGiaReview !== null, 'blog__text': review.danhGiaReview === null}">
+      <p>{{review.noiDung}}</p>
+    </div>
+  </div>
+</div>

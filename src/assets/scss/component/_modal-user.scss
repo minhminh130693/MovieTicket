@@ -1,0 +1,334 @@
+.modal__user {
+  .modal-dialog {
+    max-width: unset;
+  }
+
+  .modal-content {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: 725px;
+    margin: 0 auto;
+  }
+
+  .close {
+    cursor: pointer;
+    @include text($color-white-0, $fs-5, $fw-bold-0);
+    position: absolute;
+    top: -17%;
+    right: 0;
+  }
+
+  .table {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+
+  .table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    text-align: center;
+
+    img {
+      width: 50%;
+    }
+  }
+
+  .container {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    background-color: $color-white-0;
+    margin-top: -$mg-3;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+
+    .form__alert {
+      text-align: left;
+      @include text($color-red-0, $fs-1, $fw-bold-0);
+      padding: 0 $pd-2 + $pd-1;
+    }
+
+    .form__message {
+      text-align: left;
+      padding-left: $pd-2 + $pd-1;
+      margin-top: $mg-2;
+      @include text($color-red-0, $fs-0 + 2, $fw-bold-0);
+    }
+
+    .form__success {
+      img {
+        width: 25%;
+      }
+
+      p {
+        @include text($color-red-0, $fs-0 + 3, $fw-bold-2);
+      }
+    }
+
+    .btn {
+      &:disabled {
+        background: $color-black-1;
+        cursor: default;
+
+        &:hover {
+          opacity: unset;
+        }
+      }
+
+      &:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+
+    .box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      &::before {
+        content: " ";
+        position: absolute;
+        left: 22%;
+        top: 40%;
+        background-color: $color-red-6;
+        -webkit-transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
+        transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
+        width: 50%;
+        height: 250px;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+      }
+
+      &::after {
+        content: " ";
+        position: absolute;
+        left: 18%;
+        top: 12%;
+        background-color: $color-red-4;
+        -webkit-transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
+        transform: rotateX(52deg) rotateY(15deg) rotateZ(-38deg);
+        width: 45%;
+        height: 200px;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+      }
+    }
+
+    .modal__forms {
+      position: relative;
+    }
+
+    .modal__button {
+      cursor: pointer;
+      text-align: center;
+      margin: 0 auto;
+      width: 120px;
+      color: $color-white-0;
+      background-color: $color-red-0;
+      opacity: 1;
+      -webkit-transition: all 0.25s;
+      transition: all 0.25s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    .modal__button-user {
+      display: none;
+      background-color: transparent;
+      border: 1px solid $color-black-0;
+      @include text($color-black-0, $fs-0 + 1, $fw-bold-2);
+      margin-right: $mg-2;
+    }
+
+    .form-control {
+      &:focus {
+        border-color: $color-red-5;
+        -webkit-box-shadow: 0 0 5px 0 $color-red-4;
+        box-shadow: 0 0 5px 0 $color-red-4;
+      }
+    }
+
+    .form__pass {
+      position: relative;
+
+      a {
+        position: absolute;
+        top: 18%;
+        right: 10%;
+        @include text($color-black-4, $fs-0 + 3, $fw-bold-1);
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+
+        &:hover {
+          @include text($color-black-0, $fs-0 + 3, $fw-bold-1);
+        }
+      }
+    }
+
+    input {
+      padding: $pd-1 $pd-1 + $pd-0;
+      margin: $mg-1 + $mg-0 auto 0;
+      display: block;
+      width: 86%;
+      -webkit-transition: all 0.35s;
+      transition: all 0.35s;
+    }
+
+    .modal__forms {
+      .modal__info {
+        text-align: left;
+
+        .info__item {
+          text-align: center;
+          width: 50%;
+          padding: $pd-5 + $pd-4 + $pd-1 0;
+          display: inline-block;
+          vertical-align: top;
+          opacity: 1;
+          -webkit-transition: all 0.25s;
+          transition: all 0.25s;
+
+          p {
+            @include text($color-black-0, $fs-2, $fw-bold-2);
+            letter-spacing: 0.5px;
+            margin: $mg-2;
+          }
+
+          .modal__button {
+            background-color: transparent;
+            border: 1px solid $color-black-0;
+            @include text($color-black-0, $fs-0 + 1, $fw-bold-2);
+          }
+
+          .table-cell {
+            padding-right: $pd-3 - $pd-0;
+          }
+
+          &:nth-child(2) .table-cell {
+            padding-left: $pd-3 - $pd-0;
+            padding-right: 0;
+          }
+        }
+      }
+    }
+
+    .modal__form {
+      overflow: hidden;
+      position: absolute;
+      left: 0%;
+      top: 0%;
+      width: 50%;
+      height: 100%;
+      background-color: $color-white-0;
+      -webkit-box-shadow: 0 0 15px 0 $color-black-1;
+      box-shadow: 0 0 15px 0 $color-black-1;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      z-index: 1;
+
+      .modal__button {
+        position: relative;
+        margin-top: $mg-2;
+      }
+    }
+
+    .modal__item {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+
+      &.modal__signup {
+        position: absolute;
+        left: -100%;
+        opacity: 0;
+      }
+    }
+
+    &.modal__login {
+      .box {
+        &::before {
+          left: 9%;
+          top: 33%;
+        }
+
+        &::after {
+          top: 10%;
+          left: 37%;
+        }
+      }
+
+      .modal__form {
+        left: 50%;
+
+        .modal__item {
+          &.modal__signup {
+            left: 0;
+            opacity: 1;
+          }
+
+          &.modal__login {
+            left: -100%;
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  padding-right: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .modal__user {
+    .modal-content {
+      width: 350px;
+
+      .container {
+        max-width: unset;
+
+        .box {
+          display: none;
+        }
+
+        .modal__forms {
+          .modal__form {
+            position: relative;
+            width: 100%;
+            height: 490px;
+          }
+
+          .modal__info {
+            display: none;
+          }
+        }
+
+        .modal__button-user {
+          display: inline-block;
+        }
+
+        &.modal__login {
+          .modal__form {
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}

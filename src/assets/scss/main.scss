@@ -1,0 +1,33 @@
+@import "./helpers/variable";
+@import "./base/reset";
+@import "./helpers/mixin";
+@import "./helpers/extend";
+
+@import "./layout/header";
+@import "./layout/footer";
+
+@import "./component/button";
+@import "./component/overlay";
+@import "./component/modal";
+@import "./component/modal-user";
+@import "./component/scrolltotop";
+@import "./component/star-rating";
+
+@import "./page/home-page/home";
+@import "./page/home-page/slider-movie";
+@import "./page/home-page/list-movies";
+@import "./page/home-page/review-movie";
+@import "./page/home-page/event-movie";
+@import "./page/home-page/ticket-movie";
+
+@import "./page/detail-movie-page/detail-movie";
+@import "./page/detail-movie-page/detail-movie-top";
+@import "./page/detail-movie-page/detail-movie-info";
+
+@import "./page/page-not-found/page-not-found";
+
+@import "./page/ticket-movie-page/ticket-movie";
+@import "./page/ticket-movie-page/select-ticket";
+@import "./page/ticket-movie-page/select-seat";
+@import "./page/ticket-movie-page/result-ticket";
+

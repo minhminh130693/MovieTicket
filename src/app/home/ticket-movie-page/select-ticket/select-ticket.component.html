@@ -1,0 +1,71 @@
+<div class="ticket__step1">
+  <div class="row" *ngIf="detailMovie && detailShowtime && listCinema">
+    <div class="col-9 step1__content">
+      <ng-container *ngFor="let item of detailMovie.lichChieu" [ngSwitch]="item.ngayChieuGioChieu | date: 'EEE'">
+        <ng-container *ngIf="item.maLichChieu === detailShowtime.maLichChieu">
+          <ng-container *ngFor="let i of listCinema">
+            <ng-container *ngIf="i.maHeThongRap === item.thongTinRap.maHeThongRap">
+              <p class="step1__title">{{detailMovie.tenPhim}}</p>
+              <span class="step1__subtitle">{{item.thoiLuong}} phút - {{detailMovie.danhGia}} IMDb -
+                3D/2D/Digital</span>
+              <span class="badge badge-warning">C13</span>
+              <div class="container__top">
+                <div class="row">
+                  <div class="col-3 col-sm-2 step1__logo">
+                    <img *ngIf="i.logo" [src]="i.logo" alt="Logo">
+                  </div>
+                  <div class="col-9 col-sm-7 step1__info">
+                    <p>{{detailShowtime.tenCumRap}}</p>
+                    <span *ngSwitchCase="'Mon'">Thứ 2</span>
+                    <span *ngSwitchCase="'Tue'">Thứ 3</span>
+                    <span *ngSwitchCase="'Wed'">Thứ 4</span>
+                    <span *ngSwitchCase="'Thu'">Thứ 5</span>
+                    <span *ngSwitchCase="'Fri'">Thứ 6</span>
+                    <span *ngSwitchCase="'Sat'">Thứ 7</span>
+                    <span *ngSwitchCase="'Sun'">Chủ Nhật</span>
+                    <span> ({{item.ngayChieuGioChieu | date: 'dd-MM-yyyy'}}) -
+                      {{item.ngayChieuGioChieu | date: 'HH:mm'}} - {{detailShowtime.tenRap}}</span>
+                  </div>
+                  <div class="col-12 col-sm-3 step1__phone">
+                    <span><i class="fa fa-phone"></i> HOTLINE</span>
+                    <p>1900 0000</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <div class="container__bottom">
+        <div class="step1__detail">
+          <app-item-ticket [detailShowtime]="detailShowtime.danhSachGhe" (totalAmount)="getTotalAmount($event)">
+          </app-item-ticket>
+        </div>
+        <div class="step1__money">
+          <div class="row">
+            <div class="col-7 col-md-8 step1__total">
+              <span>Tổng Tiền</span>
+              <p [@animationAmount]="totalAmount">{{totalAmount | number:'1.0':'vi'}} đ</p>
+            </div>
+            <div class="col-5 col-md-4 step1__button">
+              <button *ngIf="!statusLogin; else ButtonSelectSeat" class="btn section__button2"
+                [disabled]="totalNumber===0" data-toggle="modal" data-target="#modalMessage" (click)="showMessage()">Chọn Ghế</button>
+              <ng-template #ButtonSelectSeat>
+                <button class="btn section__button2" [disabled]="totalNumber===0" (click)="selectSeat()">Chọn Ghế</button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 step1__image" *ngIf="detailMovie.hinhAnh"
+      [ngStyle]="{'background-image': 'url(' + detailMovie.hinhAnh + ')'}">
+      <ng-container *ngIf="detailMovie.trailer != '' && detailMovie.trailer">
+        <a class="play__button" data-toggle="modal" href="#modalTrailer" (click)="viewTrailer()"><i
+            class="fa fa-play"></i></a>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<app-modal-trailer></app-modal-trailer>

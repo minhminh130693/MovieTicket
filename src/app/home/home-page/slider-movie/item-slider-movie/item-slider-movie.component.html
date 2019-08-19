@@ -1,0 +1,5 @@
+<a [routerLink]="['/detail-movie-page', sliderMovie.maPhim]"><img [src]="sliderMovie.hinhAnh" alt="Slider"></a>
+<ng-container *ngIf="sliderMovie.trailer != '' && sliderMovie.trailer">
+  <a class="play__button" data-toggle="modal" href="#modalTrailer" (click)="viewTrailer()"><i
+      class="fa fa-play"></i></a>
+</ng-container>

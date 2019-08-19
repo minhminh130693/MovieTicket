@@ -1,0 +1,91 @@
+<div id="showtime__movie">
+  <div class="row">
+    <div class="col-md-3 showtime__left">
+      <ng-container *ngIf="listCinema">
+        <div class="row" #showtimeCinema *ngFor="let item of listCinema; let i=index"
+          [ngClass]="{'row__last': (i+1)===listCinema.length, 'active__cinema': item.maHeThongRap === selectedCinema}">
+          <div class="col-12 col-md-3 cinema__logo">
+            <img [src]="item.logo" alt="Logo">
+          </div>
+          <div class="col-12 col-md-9 cinema__title">
+            <span>{{item.tenHeThongRap}}</span>
+          </div>
+          <a href="javascript:void(0)" class="showtime__overlay" (click)="selectCinema(item.maHeThongRap)"></a>
+        </div>
+      </ng-container>
+    </div>
+    <div class="col-md-9 showtime__right">
+      <ng-container #showtimeDate *ngIf="detailMovie">
+        <div class="showtime__date">
+          <div *ngFor="let item of detailMovie.lichChieu | unique: 'ngayChieuGioChieu'"
+            [ngSwitch]="item.ngayChieuGioChieu | date: 'EEE'"
+            [ngClass]="{'active__date': (item.ngayChieuGioChieu | date: 'dd-MM-yyyy') === selectedDate}">
+            <a href="javascript:void(0)" *ngSwitchCase="'Mon'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Thứ 2</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+            <a href="javascript:void(0)" *ngSwitchCase="'Tue'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Thứ 3</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+            <a href="javascript:void(0)" *ngSwitchCase="'Wed'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Thứ 4</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+            <a href="javascript:void(0)" *ngSwitchCase="'Thu'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Thứ 5</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+            <a href="javascript:void(0)" *ngSwitchCase="'Fri'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Thứ 6</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+            <a href="javascript:void(0)" *ngSwitchCase="'Sat'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Thứ 7</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+            <a href="javascript:void(0)" *ngSwitchCase="'Sun'" (click)="selectDate(item.ngayChieuGioChieu)">
+              <span>Chủ Nhật</span>
+              <span>{{item.ngayChieuGioChieu | date: 'dd/MM'}}</span>
+            </a>
+          </div>
+        </div>
+      </ng-container>
+      <div class="showtime__detail" *ngIf="detailCinema && detailMovie">
+        <ng-container *ngIf="checkShowtime; else NoShowtime">
+          <ng-container
+            *ngFor="let item of detailMovie.lichChieu | groupBy : ['thongTinRap.maHeThongRap', 'thongTinRap.maCumRap', 'thongTinRap.tenCumRap']">
+            <ng-container *ngIf="(item.key | split:'|':0) === selectedCinema">
+              <div class="showtime__item">
+                <div class="row">
+                  <div class="col-2 showtime__item-image">
+                    <img src="assets/img/cinema.jpg" alt="Cinema">
+                  </div>
+                  <div class="col-10 showtime__item-content">
+                    <p>{{item.key | split:'|':2}}</p>
+                    <ng-container *ngFor="let detail of detailCinema">
+                      <span *ngIf="detail.maCumRap === (item.key | split:'|':1)">{{detail.diaChi}}
+                        <a href="#modalMap" class="showtime__map" data-toggle="modal"
+                          (click)="viewMap(detail.diaChi)">[Bản đồ]</a>
+                      </span>
+                    </ng-container>
+                    <ng-container *ngFor="let i of item.value">
+                      <ng-container *ngIf="(i.ngayChieuGioChieu | date: 'dd-MM-yyyy') === selectedDate">
+                        <a class="showtime__time" href="javascript:void(0)"
+                          (click)="detailRoom(i.maLichChieu, i.maPhim)">{{i.ngayChieuGioChieu | date: 'HH:mm'}}</a>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-template #NoShowtime>
+          <p class="showtime__mess">Không có suất chiếu</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-map></app-modal-map>

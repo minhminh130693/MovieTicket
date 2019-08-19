@@ -1,0 +1,11 @@
+<div class="modal fade modal__message" id="modalMessage" (click)="closeMessage()">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="message__detail">
+        <img src="assets/img/message.jpg" alt="Message">
+        <p *ngIf="messageContent !== null && messageContent !== ''">{{messageContent}}</p>
+        <button class="btn section__button2" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

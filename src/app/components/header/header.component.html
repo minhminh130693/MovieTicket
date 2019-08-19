@@ -1,0 +1,57 @@
+<div class="header sticky-nav" ngStickyNav id="myNav">
+    <div class="row">
+        <div class="col-6 col-md-2 header__logo">
+            <a [routerLink]="['/']"><img src="assets/img/logo.png" alt="Logo"></a>
+        </div>
+        <div class="col-6 col-md-7 header__menu">
+            <div class="header__nav">
+                <nav class="navbar navbar-expand-md">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myHeader">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="myHeader">
+                        <ul class="navbar-nav">
+                            <button class="btn nav-item" (click)="scrollTo('ticket')">
+                                <a class="nav-link" href="#ticket">MUA VÉ</a>
+                            </button>
+                            <button class="btn nav-item" (click)="scrollTo('movies')">
+                                <a class="nav-link" href="#movies">LỊCH CHIẾU</a>
+                            </button>
+                            <button class="btn nav-item" (click)="scrollTo('review')">
+                                <a class="nav-link" href="#review">TIN TỨC</a>
+                            </button>
+                            <button class="btn nav-item" (click)="scrollTo('event')">
+                                <a class="nav-link" href="#event">ƯU ĐÃI</a>
+                            </button>
+                            <button class="btn nav-item" (click)="scrollTo('footer')">
+                                <a class="nav-link" href="#footer">LIÊN HỆ</a>
+                            </button>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="col-md-3 header__user">
+            <div class="header__infor">
+                <div class="header__login">
+                    <a href="#modalUser" data-toggle="modal" *ngIf="statusLogin === false; else loginUser">
+                        <i class="fa fa-user"></i>
+                        <span>Đăng nhập / Đăng ký</span>
+                    </a>
+                    <ng-template #loginUser>
+                        <div class="dropdown">
+                            <a href="javascript:void(0)">
+                                <img src="assets/img/avatar-user.jpg" alt="Avatar">
+                                <span>{{user.hoTen}}</span>
+                                <a class="dropdown-content" href="javascript:void(0)" (click)="logoutUser()">Đăng
+                                    xuất</a>
+                            </a>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal-user></app-modal-user>

@@ -1,0 +1,35 @@
+<div class="movies" id="movies">
+  <div class="container">
+    <ul class="nav nav-pills content__title">
+      <li><i class="fa fa-angle-double-right arrow"></i></li>
+      <li class="nav-item content__item">
+        <a class="nav-link content__link active" data-toggle="pill" href="#showing">PHIM ĐANG CHIẾU</a>
+      </li>
+      <li class="nav-item content__item">
+        <a class="nav-link content__link" data-toggle="pill" href="#comming">PHIM SẮP CHIẾU</a>
+      </li>
+    </ul>
+    <ng-container *ngIf="listMovie">
+      <div class="tab-content">
+        <div class="tab-pane container active" id="showing">
+          <owl-carousel [options]="carouselOptions" [items]="listMovie"
+            [carouselClasses]="['owl-theme', 'row', 'sliding']">
+            <div class="item" *ngFor="let item of listMovie">
+              <app-item-movie [movie]="item" [isShowing]="isShowing">
+              </app-item-movie>
+            </div>
+          </owl-carousel>
+        </div>
+        <div class="tab-pane container fade" id="comming">
+          <owl-carousel [options]="carouselOptions" [items]="listMovie"
+            [carouselClasses]="['owl-theme', 'row', 'sliding']">
+            <div class="item" *ngFor="let item of listMovie">
+              <app-item-movie [movie]="item">
+              </app-item-movie>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border: 10px solid $color-gray-1;
+  background-color: $color-black-2;
+  opacity: 0;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+
+  .overlay__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay__text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -20%);
+            transform: translate(-50%, -20%);
+    text-align: center;
+    opacity: 0.9;
+  }
+
+  .overlay__button {
+    width: 50%;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -20%);
+            transform: translate(-50%, -20%);
+    text-align: center;
+    z-index: 1;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

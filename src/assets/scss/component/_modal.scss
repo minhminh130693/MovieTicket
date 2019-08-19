@@ -1,0 +1,54 @@
+.modal__trailer,
+.modal__map {
+  .modal-dialog {
+    .modal-content {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+
+      .modal-body {
+        padding: 0;
+
+        .close {
+          cursor: pointer;
+          @include text($color-white-0, $fs-5, $fw-bold-0);
+        }
+      }
+    }
+  }
+}
+
+.modal__message {
+  .modal-dialog {
+    .modal-content {
+      -webkit-box-shadow: 0 0 5px 0 $color-black-1;
+              box-shadow: 0 0 5px 0 $color-black-1;
+      border: none;
+      padding: 0 $pd-2 $pd-2;
+
+      .message__detail {
+        text-align: -webkit-center;
+
+        .btn {
+          width: 60px;
+          display: block;
+        }
+
+        img {
+          width: 50%;
+          display: block;
+        }
+
+        p {
+          @include text($color-black-3, $fs-0 + 1, $fw-bold-2);
+          margin: $mg-1 + $mg-0 0;
+        }
+      }
+    }
+  }
+}
+
+.modal-open {
+  padding-right: 0 !important;
+  overflow-y: auto;
+}

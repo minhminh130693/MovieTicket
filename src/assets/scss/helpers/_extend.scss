@@ -1,0 +1,44 @@
+.arrow {
+  width: 45px;
+  height: 39px;
+  text-align: center;
+  @include text($color-red-0, $fs-5, $fw-bold);
+  line-height: $line-height-2 + 1;
+}
+
+.background__page {
+  background-position: top;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.content__title {
+  padding-bottom: $pd-4;
+
+  .content__item {
+    .content__link {
+      @include text($color-white-0, $fs-0, $fw-bold-1);
+      letter-spacing: 1px;
+      border-radius: 0;
+      border-bottom: 2px solid $color-red-0;
+      -webkit-transition: all 0.35s;
+      transition: all 0.35s;
+
+      &:hover {
+        color: $color-red-0;
+      }
+    }
+
+    .active {
+      background: $color-red-0;
+      @include text($color-white-0, $fs-0, $fw-bold-1);
+      -webkit-transition: all 0.35s;
+      transition: all 0.35s;
+
+      &:hover {
+        color: $color-white-0;
+      }
+    }
+  }
+}

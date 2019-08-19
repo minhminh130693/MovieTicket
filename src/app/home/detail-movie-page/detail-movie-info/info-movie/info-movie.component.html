@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="row">
+      <div class="col-3 col-md-5 info__title"><span>Khởi chiếu</span></div>
+      <div class="col-9 col-md-7 info__content"><span>{{detailMovie.ngayKhoiChieu | date: "dd.MM.yyyy"}}</span></div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-md-5 info__title"><span>Thời lượng</span></div>
+      <div class="col-9 col-md-7 info__content"><span>120 phút</span></div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-md-5 info__title"><span>Thể loại</span></div>
+      <div class="col-9 col-md-7 info__content"><span>Hành động, Tâm lý</span></div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-md-5 info__title"><span>Định dạng</span></div>
+      <div class="col-9 col-md-7 info__content"><span>3D/2D/Digital</span></div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="row">
+      <div class="col-3 col-md-4 info__title"><span>Đạo diễn</span></div>
+      <div class="col-9 col-md-8 info__content"><span>Jon Favreau</span></div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-md-4 info__title"><span>Diễn viên</span></div>
+      <div class="col-9 col-md-8 info__content"><span>Donald Glover, Beyoncé Knowles, Chiwetel Ejiofor, Seth
+          Rogen</span></div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-md-4 info__title"><span>Nhà sản xuất</span></div>
+      <div class="col-9 col-md-8 info__content"><span>Walt Disney Pictures</span></div>
+    </div>
+    <div class="row">
+      <div class="col-3 col-md-4 info__title"><span>Quốc gia</span></div>
+      <div class="col-9 col-md-8 info__content"><span>Mỹ</span></div>
+    </div>
+  </div>
+</div>
+<div>
+  <p class="info__title">Nội dung</p>
+  <p class="info__content">{{detailMovie.moTa}}</p>
+</div>
+<div>
+  <p class="info__title">Trailer</p>
+  <ng-container *ngIf="stringTrailer != '' && stringTrailer">
+    <div class="info__trailer">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" [src]="stringTrailer" frameborder="0" webkitallowfullscreen
+          mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </ng-container>
+</div>

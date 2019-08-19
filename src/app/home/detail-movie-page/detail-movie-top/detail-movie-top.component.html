@@ -1,0 +1,36 @@
+<div class="detail__content">
+  <div class="row">
+    <div class="col-4 col-md-3 col-lg-4 detail__left">
+      <div class="detail__image">
+        <img *ngIf="detailMovie.hinhAnh" [src]="detailMovie.hinhAnh" alt="Movie">
+        <ng-container *ngIf="detailMovie.trailer != '' && detailMovie.trailer">
+          <div class="detail__overlay">
+            <a class="play__button" data-toggle="modal" href="#modalTrailer" (click)="viewTrailer()"><i
+                class="fa fa-play"></i></a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-8 col-md-6 col-lg-5 detail__center">
+      <div class="detail__title">
+        <p class="detail__subtitle">{{detailMovie.ngayKhoiChieu | date: "dd.MM.yyyy"}}
+          <span class="badge badge-warning">C13</span></p>
+        <h4 class="detail__maintitle">{{detailMovie.tenPhim}}</h4>
+        <p class="detail__subtitle"><i class="fa fa-clock-o"></i>120 phút - {{detailMovie.danhGia}} IMDb - 3D/2D/Digital
+        </p>
+      </div>
+      <ng-container *ngIf="detailMovie.lichChieu && detailMovie.lichChieu.length !== 0">
+        <button type="button" class="btn section__button" (click)="scrollTo('detailMovie')">MUA VÉ</button>
+      </ng-container>
+    </div>
+    <div class="col-md-3 detail__right">
+      <ng-container *ngIf="this.avgRating && this.countRating">
+        <app-circle-rating-movie [avgRating]="avgRating" [avgRatingPer]="avgRatingPer"></app-circle-rating-movie>
+        <app-star-rating [rating]="avgRating | number: '1.0-0'" [disabledClick]="true"></app-star-rating>
+        <p>{{countRating}} người đánh giá</p>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<app-modal-trailer></app-modal-trailer>

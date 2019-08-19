@@ -1,0 +1,10 @@
+<ng-container *ngIf="avgRating">
+  <div class="progress__circle">
+    <svg viewBox="0 0 36 36" class="progress__svg">
+      <path class="progress__value" attr.stroke-dasharray="{{avgRatingPer}}, 100" d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831" />
+    </svg>
+    <div class="progress__text">{{avgRating}}<span>/5</span></div>
+  </div>
+</ng-container>

@@ -1,0 +1,150 @@
+<div class="modal fade modal__user" id="modalUser" (click)="closeModalUser()">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div #closeModal class="close" data-dismiss="modal">&times;</div>
+      <div class="container">
+        <div class="box"></div>
+        <div class="modal__forms">
+          <div class="modal__form">
+            <div class="modal__item modal__login">
+              <div class="table">
+                <div class="table-cell">
+                  <form #formLogin="ngForm" (ngSubmit)="login(formLogin)">
+                    <img src="assets/img/logo.png" alt="Login">
+                    <p class="form__message" *ngIf="errorLoginUser !== ''">{{errorLoginUser}}</p>
+                    <!-- Username -->
+                    <input class="form-control" name="username" placeholder="Tài khoản" type="text" #username='ngModel'
+                      ngModel required>
+                    <div *ngIf="username.errors && (username.dirty || username.touched)">
+                      <div *ngIf="username.errors.required" class="form__alert">
+                        * Vui lòng nhập tài khoản!
+                      </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form__pass">
+                      <input class="form-control" name="password" placeholder="Mật khẩu"
+                        [type]="!hidePasswordLogin ? 'password' : 'text'" #password='ngModel' ngModel required>
+                      <a *ngIf="!hidePasswordLogin; else showPassLogin" href="javascript:void(0)"
+                        (click)="showPass('Login', true)"><i class="fa fa-eye-slash"></i></a>
+                      <ng-template #showPassLogin>
+                        <a href="javascript:void(0)" (click)="showPass('Login', false)"><i class="fa fa-eye"></i></a>
+                      </ng-template>
+                    </div>
+                    <div *ngIf="password.errors && (password.dirty || password.touched)">
+                      <div *ngIf="password.errors.required" class="form__alert">
+                        * Vui lòng nhập mật khẩu!
+                      </div>
+                    </div>
+                    <button type="button" class="btn modal__button modal__button-user">Đăng Ký</button>
+                    <button type="submit" class="btn modal__button" [disabled]="!formLogin.valid">Đăng Nhập</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal__item modal__signup">
+              <div class="table">
+                <div class="table-cell">
+                  <form #formSignUp="ngForm" (ngSubmit)="signUp(formSignUp)" *ngIf="!statusSignUp; else SignUpSuccess">
+                    <p class="form__message" *ngIf="errorSignUpUser !== ''">{{errorSignUpUser}}</p>
+                    <!-- Username -->
+                    <input class="form-control" pattern="^[a-zA-Z0-9_-]{7,20}$" name="userName" placeholder="Tài khoản"
+                      type="text" #userName='ngModel' ngModel required>
+                    <div *ngIf="userName.errors && (userName.dirty || userName.touched)">
+                      <div *ngIf="userName.errors.required" class="form__alert">
+                        * Vui lòng nhập tài khoản!
+                      </div>
+                      <div *ngIf="userName.errors.pattern" class="form__alert">
+                        * Vui lòng nhập từ 7-20 ký tự (sử dụng dấu _, dấu -, chữ & số)!
+                      </div>
+                    </div>
+                    <!-- Fullname -->
+                    <input class="form-control"
+                      pattern="^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+$"
+                      name="fullName" placeholder="Họ tên" type="text" #fullName='ngModel' ngModel required>
+                    <div *ngIf="fullName.errors && (fullName.dirty || fullName.touched)">
+                      <div *ngIf="fullName.errors.required" class="form__alert">
+                        * Vui lòng nhập họ tên!
+                      </div>
+                      <div *ngIf="fullName.errors.pattern" class="form__alert">
+                        * Vui lòng không nhập số và các ký tự đặc biệt!
+                      </div>
+                    </div>
+                    <!-- Email -->
+                    <input class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email"
+                      placeholder="Email" type="text" #email='ngModel' ngModel required>
+                    <div *ngIf="email.errors && (email.dirty || email.touched)">
+                      <div *ngIf="email.errors.required" class="form__alert">
+                        * Vui lòng nhập email!
+                      </div>
+                      <div *ngIf="email.errors.pattern" class="form__alert">
+                        * Vui lòng nhập email đúng định dạng!
+                      </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form__pass">
+                      <input class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pass"
+                        placeholder="Mật khẩu" [type]="!hidePasswordSignUp ? 'password' : 'text'" #pass='ngModel'
+                        ngModel required>
+                      <a *ngIf="!hidePasswordSignUp; else showPassSignUp" href="javascript:void(0)"
+                        (click)="showPass('SignUp', true)"><i class="fa fa-eye-slash"></i></a>
+                      <ng-template #showPassSignUp>
+                        <a href="javascript:void(0)" (click)="showPass('SignUp', false)"><i class="fa fa-eye"></i></a>
+                      </ng-template>
+                    </div>
+                    <!-- </div> -->
+                    <div *ngIf="pass.errors && (pass.dirty || pass.touched)">
+                      <div *ngIf="pass.errors.required" class="form__alert">
+                        * Vui lòng nhập mật khẩu!
+                      </div>
+                      <div *ngIf="pass.errors.pattern" class="form__alert">
+                        * Vui lòng nhập mật khẩu phải có ký tự hoa, ký tự thường & số (tối thiểu 8 ký tự)!
+                      </div>
+                    </div>
+                    <!-- Phone -->
+                    <input class="form-control" pattern="[0-9]\d{9}$" name="phone" placeholder="Số điện thoại"
+                      type="text" #phone='ngModel' ngModel required>
+                    <div *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                      <div *ngIf="phone.errors.required" class="form__alert">
+                        * Vui lòng nhập số điện thoại!
+                      </div>
+                      <div *ngIf="phone.errors.pattern" class="form__alert">
+                        * Vui lòng nhập số điện thoại đủ 10 số!
+                      </div>
+                    </div>
+                    <button type="button" class="btn modal__button modal__button-user" (click)="clickLoginForm()">Đăng
+                      Nhập</button>
+                    <button type="submit" class="btn modal__button" [disabled]="!formSignUp.valid">Đăng Ký</button>
+                  </form>
+                  <ng-template #SignUpSuccess>
+                    <div class="form__success">
+                      <img src="assets/img/check.gif" alt="Success">
+                      <p>Đăng ký thành công!</p>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal__info">
+            <div class="info__item">
+              <div class="table">
+                <div class="table-cell">
+                  <p>Bạn đã là thành viên?</p>
+                  <button class="btn modal__button" id="buttonLogin" (click)="clickLoginForm()">Đăng Nhập</button>
+                </div>
+              </div>
+            </div>
+            <div class="info__item">
+              <div class="table">
+                <div class="table-cell">
+                  <p>Bạn chưa là thành viên?</p>
+                  <button class="btn modal__button">Đăng Ký</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="modal fade" id="modalConfirm" *ngIf="detailMovie && detailShowtime && listSelectedSeatOrderBy">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4 step2__image">
+            <img *ngIf="detailMovie.hinhAnh" [src]="detailMovie.hinhAnh" alt="Movie">
+          </div>
+          <div class="col-md-8 step2__confirm">
+            <h3>Thông tin đặt vé</h3>
+            <p><span class="badge badge-warning">C13</span>{{detailMovie.tenPhim}}</p>
+            <p>{{detailShowtime.tenCumRap}}</p>
+            <p>Suất chiếu:
+              <span>
+                <ng-container *ngFor="let item of detailMovie.lichChieu"
+                  [ngSwitch]="item.ngayChieuGioChieu | date: 'EEE'">
+                  <ng-container *ngIf="item.maLichChieu === detailShowtime.maLichChieu">
+                    <span *ngSwitchCase="'Mon'">Thứ 2</span>
+                    <span *ngSwitchCase="'Tue'">Thứ 3</span>
+                    <span *ngSwitchCase="'Wed'">Thứ 4</span>
+                    <span *ngSwitchCase="'Thu'">Thứ 5</span>
+                    <span *ngSwitchCase="'Fri'">Thứ 6</span>
+                    <span *ngSwitchCase="'Sat'">Thứ 7</span>
+                    <span *ngSwitchCase="'Sun'">Chủ Nhật</span>
+                    <span> ({{item.ngayChieuGioChieu | date: 'dd-MM-yyyy'}}) -
+                      {{item.ngayChieuGioChieu | date: 'HH:mm'}}
+                      - {{detailShowtime.tenRap}}</span>
+                  </ng-container>
+                </ng-container>
+              </span>
+            </p>
+            <p>Số lượng: <span>{{totalNumber}}</span>
+              <span class="step2__seatlist">Ghế: </span>
+              <span>
+                <ng-container *ngIf="listSelectedSeatOrderBy && listSelectedSeatOrderBy.length !== 0">
+                  <ng-container *ngFor="let item of listSelectedSeatOrderBy; let i=index">
+                    <span class="step2__numberSeat">{{item.seat}}</span>
+                    <span *ngIf="(i + 1) < listSelectedSeatOrderBy.length">, </span>
+                  </ng-container>
+                </ng-container>
+              </span>
+            </p>
+            <p>Tổng tiền: <span>{{totalAmount | number:'1.0':'vi'}} đ</span></p>
+            <button class="btn section__button2" data-dismiss="modal">Đóng</button>
+            <button class="btn section__button2" (click)="confirmBooking()">Xác Nhận</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

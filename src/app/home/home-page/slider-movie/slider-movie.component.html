@@ -1,0 +1,23 @@
+<ng-container *ngIf="listSliderMovie">
+  <div class="carousel">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <ul class="carousel-indicators">
+        <li data-target="#carousel" *ngFor="let item of listSliderMovie" [ngClass]="{active: item.maSlider === 0}"
+          attr.data-slide-to="{{item.maSlider}}"></li>
+      </ul>
+      <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let item of listSliderMovie" [ngClass]="{active: item.maSlider === 0}">
+          <app-item-slider-movie [sliderMovie]="item"></app-item-slider-movie>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carousel" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#carousel" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
+</ng-container>
+
+<app-modal-trailer></app-modal-trailer>

@@ -1,0 +1,83 @@
+<div class="ticket__content" id="ticket">
+  <form class="ticket__form">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-1 form__image" >
+        <img src="assets/img/tickets-icon.png" alt="Ticket">
+      </div>
+      <div class="col-sm-6 col-md-12 col-lg-3 form__movie">
+        <mat-form-field>
+          <mat-label>Phim</mat-label>
+          <mat-select (selectionChange)="selectMovie($event.value)">
+            <ng-container *ngIf="listMovie">
+              <mat-option *ngFor="let item of listMovie" [value]="item.maPhim">
+                {{item.tenPhim}} (C13)
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-md-12 col-lg-2 form__cinema">
+        <mat-form-field>
+          <mat-label>Rạp</mat-label>
+          <mat-select (selectionChange)="selectCinema($event.value)" [(value)]="selectedCinema">
+            <ng-container *ngIf="selectedMovie != '' && detailMovie.lichChieu ; else SelectCinema">
+              <mat-option *ngFor="let item of detailMovie.lichChieu | unique: 'thongTinRap.maCumRap'"
+                [value]="item.thongTinRap.maCumRap">
+                {{item.thongTinRap.tenCumRap}}
+              </mat-option>
+            </ng-container>
+            <ng-template #SelectCinema>
+              <mat-option>Vui lòng chọn phim</mat-option>
+            </ng-template>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-md-12 col-lg-2 form__date">
+        <mat-form-field>
+          <mat-label>Ngày xem</mat-label>
+          <mat-select (selectionChange)="selectDate($event.value)" [(value)]="selectedDate">
+            <ng-container
+              *ngIf="selectedMovie != '' && selectedCinema != '' && detailMovie.lichChieu ; else SelectDate">
+              <ng-container *ngFor="let item of detailMovie.lichChieu | unique: 'ngayChieuGioChieu'">
+                <ng-container *ngIf="item.thongTinRap.maCumRap === selectedCinema">
+                  <mat-option [value]="item.ngayChieuGioChieu | date: 'dd-MM-yyyy'">
+                    {{item.ngayChieuGioChieu | date: 'dd-MM-yyyy'}}
+                  </mat-option>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <ng-template #SelectDate>
+              <mat-option>Vui lòng chọn phim và rạp</mat-option>
+            </ng-template>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-md-12 col-lg-2 form__session">
+        <mat-form-field>
+          <mat-label>Suất chiếu</mat-label>
+          <mat-select (selectionChange)="selectSession($event.value)" [(value)]="selectedSession">
+            <ng-container
+              *ngIf="selectedMovie != '' && selectedCinema != '' && selectedDate != '' && detailMovie.lichChieu ; else SelectSession">
+              <ng-container *ngFor="let item of detailMovie.lichChieu">
+                <ng-container
+                  *ngIf="item.thongTinRap.maCumRap === selectedCinema && (item.ngayChieuGioChieu | date: 'dd-MM-yyyy') === selectedDate">
+                  <!-- <mat-option [value]="item.ngayChieuGioChieu | date: 'HH:mm'"> -->
+                  <mat-option [value]="item.maLichChieu">
+                    {{item.ngayChieuGioChieu | date: 'HH:mm'}}
+                  </mat-option>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <ng-template #SelectSession>
+              <mat-option>Vui lòng chọn phim, rạp và ngày xem</mat-option>
+            </ng-template>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-2 ticket__button">
+        <button mat-flat-button type="button" color="warn" [disabled]="enabledButton" (click)="buyTicket()">MUA VÉ
+          NGAY</button>
+      </div>
+    </div>
+  </form>
+</div>

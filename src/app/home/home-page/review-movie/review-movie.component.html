@@ -1,0 +1,41 @@
+<section class="review" id="review">
+  <div class="container">
+    <ul class="nav nav-pills content__title">
+      <li><i class="fa fa-angle-double-right arrow"></i></li>
+      <li class="nav-item content__item">
+        <a class="nav-link content__link active" data-toggle="pill" href="#reviewTab">BÌNH LUẬN PHIM</a>
+      </li>
+      <li class="nav-item content__item">
+        <a class="nav-link content__link" data-toggle="pill" href="#blogTab">BLOG ĐIỆN ẢNH</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <ng-container *ngIf="listReviewMovie">
+        <div class="tab-pane container active" id="reviewTab">
+          <div class="row">
+            <div class="col-12 col-lg-6 review__items" *ngFor="let item of listReviewMovie | slice:0:showReview">
+              <app-item-review-movie [review]="item"></app-item-review-movie>
+            </div>
+          </div>
+          <div class="button__viewmore">
+            <button type="button" class="btn section__button" *ngIf="showReview < listReviewMovie.length"
+              (click)="viewMore('review')">XEM THÊM</button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="listBlogMovie">
+        <div class="tab-pane container fade" id="blogTab">
+          <div class="row">
+            <div class="col-12 col-lg-6 review__items" *ngFor="let item of listBlogMovie | slice:0:showBlog">
+              <app-item-review-movie [review]="item"></app-item-review-movie>
+            </div>
+          </div>
+          <div class="button__viewmore">
+            <button type="button" class="btn section__button" *ngIf="showBlog < listBlogMovie.length"
+              (click)="viewMore('blog')">XEM THÊM</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

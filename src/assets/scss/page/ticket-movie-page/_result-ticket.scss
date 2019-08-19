@@ -1,0 +1,66 @@
+.ticket__step3 {
+  padding: $pd-3;
+
+  .container-fluid {
+    background: $color-white-0;
+    border-radius: 5px;
+    padding: $pd-3;
+
+    .step3__left {
+      text-align: center;
+      margin: auto 0;
+      padding: 0;
+
+      img {
+        width: 80%;
+      }
+    }
+
+    .step3__right {
+      margin: auto 0;
+
+      h4 {
+        @include text($color-red-0, $fs-3, $fw-bold-2);
+        margin-bottom: $mg-2;
+      }
+
+      p {
+        @include text($color-black-4, $fs-0 + 1, $fw-bold-2);
+        margin-bottom: $mg-2;
+      }
+
+      p:nth-child(2) {
+        span {
+          display: block;
+        }
+      }
+
+      p:nth-child(3) {
+        span {
+          white-space: nowrap;
+          @include text($color-yellow-0, $fs-0 + 3, $fw-bold-2);
+        }
+      }
+
+      p:nth-child(4) {
+        margin-bottom: $mg-2 + $mg-1;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .ticket__step3 {
+    padding: $pd-2;
+
+    .container-fluid {
+      padding: $pd-2 + $pd-1;
+      
+      .step3__left {
+        img {
+          width: 40%;
+        }
+      }
+    }
+  }
+}

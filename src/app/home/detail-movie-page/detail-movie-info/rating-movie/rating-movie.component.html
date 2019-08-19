@@ -1,0 +1,57 @@
+<div class="rate__content">
+  <ng-container *ngIf="statusLogin; else RatingMovie">
+    <div class="row">
+      <div class="col-2 rate__avatar">
+        <img [src]="avatarUser" alt="Avatar">
+      </div>
+      <div class="col-7 rate__info">
+        <p>{{user.hoTen}}</p>
+        <app-star-rating [(rating)]="ratingStar" [disabledClick]="false" (ratingClick)="onRatingClick($event)">
+        </app-star-rating>
+      </div>
+      <div class="col-3 rate__submit">
+        <button mat-flat-button color="warn" [disabled]="!(ratingStar !== -1 && ratingComment != '')"
+          (click)="submitRating()">Đăng</button>
+      </div>
+    </div>
+    <mat-form-field>
+      <textarea matInput rows="2" placeholder="Bạn nghĩ gì về phim này?" [(value)]="ratingComment" #comment
+        (keyup)="commentMovie(comment.value)"></textarea>
+    </mat-form-field>
+  </ng-container>
+  <ng-template #RatingMovie>
+    <div class="row">
+      <div class="col-2 rate__avatar">
+        <img src="assets/img/avatar-0.png" alt="Avatar">
+      </div>
+      <div class="col-10 rate__question">
+        <a href="#modalUser" data-toggle="modal">Bạn nghĩ gì về phim này?</a>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<ng-container *ngIf="listRatingFilter">
+  <div class="rate__list">
+    <div class="rate__comment"
+      *ngFor="let item of listRatingFilter | orderBy: 'ngayGio': 'desc' | slice:0:showRating">
+        <div class="row">
+          <div class="col-2 rate__image">
+            <img *ngIf="item.hinhAnh" [src]="item.hinhAnh" alt="Avatar">
+          </div>
+          <div class="col-5 rate__time">
+            <p>{{item.hoTen}}</p>
+            <span>{{item.ngayGio | timeAgo}}</span>
+          </div>
+          <div class="col-5 rate__vote">
+            <app-star-rating [rating]="item.danhGia" [disabledClick]="true"></app-star-rating>
+          </div>
+        </div>
+        <p class="rate__detail">{{item.binhLuan}}</p>
+    </div>
+    <div class="button__viewmore">
+      <button type="button" class="btn section__button" *ngIf="showRating < listRatingFilter.length"
+        (click)="viewMore()">XEM THÊM</button>
+    </div>
+  </div>
+</ng-container>

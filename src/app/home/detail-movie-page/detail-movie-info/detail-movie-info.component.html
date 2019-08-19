@@ -1,0 +1,29 @@
+<div class="detail__info" id="detailMovie">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#showtimesTab" id="showtimesMovie">Lịch Chiếu</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#infoTab" (click)="viewInfo()">Thông Tin</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#rateTab">Đánh Giá</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <ng-container *ngIf="detailMovie">
+      <!-- showtimesTab -->
+      <div class="tab-pane active" id="showtimesTab">
+        <app-showtime-movie [detailMovie]="detailMovie"></app-showtime-movie>
+      </div>
+      <!-- infoTab -->
+      <div class="tab-pane fade" id="infoTab">
+        <app-info-movie [detailMovie]="detailMovie" [stringTrailer]="stringTrailer"></app-info-movie>
+      </div>
+      <!-- rateTab -->
+      <div class="tab-pane fade" id="rateTab">
+        <app-rating-movie></app-rating-movie>
+      </div>
+    </ng-container>
+  </div>
+</div>

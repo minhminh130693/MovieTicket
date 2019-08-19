@@ -1,0 +1,18 @@
+<div class="ticket__detail background__page">
+  <div [@slideInOut]="selectTicket">
+    <app-select-ticket [detailShowtime]="detailShowtime" [detailMovie]="detailMovie" [listCinema]="listCinema"
+      (eventSelectSeatButton)="selectSeatEvent($event)">
+    </app-select-ticket>
+  </div>
+  <div [@slideInOut]="selectSeat">
+    <app-select-seat [detailShowtime]="detailShowtime" [detailMovie]="detailMovie" [listCinema]="listCinema"
+      [selectedTicket]="selectedTicket" [totalAmount]="totalAmount" [totalNumber]="totalNumber"
+      [selectSeat]="selectSeat" [user]="user" (backSelectTicketEvent)="backEvent($event)"
+      (nextBookedEvent)="nextEvent($event)">
+    </app-select-seat>
+  </div>
+  <div [@slideInOut]="resultTicket">
+    <app-result-ticket></app-result-ticket>
+  </div>
+  <app-modal-message></app-modal-message>
+</div>

@@ -1,0 +1,62 @@
+.page__notfound {
+  text-align: center;
+  
+  img {
+    width: 40%;
+  }
+
+  .page__content {
+    margin: auto 0;
+
+    h1 {
+      @include text($color-blue-1, $fs-5 + $fs-4, $fw-bold-2);
+      font-family: "Julius Sans One", sans-serif;
+    }
+
+    p {
+      @include text($color-black-1, $fs-3 + 6, $fw-bold-2);
+      font-family: "Julius Sans One", sans-serif;
+      margin: $mg-2 0 $mg-3;
+    }
+
+    .page__button {
+      position: relative;
+      @include text($color-red-0, $fs-0, $fw-bold-1);
+      border: 1px solid $color-red-0;
+      letter-spacing: 1px;
+      border-radius: 5px;
+      padding: $pd-1 $pd-2;
+      -webkit-transition: all 0.35s;
+      transition: all 0.35s;
+
+      &::after {
+        content: "";
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $color-red-0;
+        width: 100%;
+        height: 0;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        z-index: -1;
+      }
+
+      &:hover {
+        color: $color-white-0;
+
+        &::after {
+          background-color: $color-red-0;
+          height: 100%;
+          overflow: visible;
+        }
+      }
+
+      &:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+  }
+}

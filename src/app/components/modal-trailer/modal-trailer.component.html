@@ -1,0 +1,13 @@
+<div class="modal fade modal__trailer" id="modalTrailer" (click)="closeTrailer()">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="close" data-dismiss="modal">&times;</div>
+        <div *ngIf="link != ''" class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" [src]="link" allow='autoplay;' webkitallowfullscreen mozallowfullscreen
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

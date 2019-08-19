@@ -1,0 +1,36 @@
+.detail__movie {
+  background-image: url("./../img/bg-0.jpg");
+  padding: 0 $pd-5 + $pd-2;
+}
+
+@media (max-width: 1190px) {
+  .detail__movie {
+    padding: 0 $pd-4 - $pd-1;
+  }
+}
+
+@media (max-width: 1100px) {
+  .detail__movie {
+    padding: 0 $pd-3 + $pd-0;
+  }
+}
+
+@media (max-width: 992px) {
+  .detail__movie {
+    padding: 0 $pd-3;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail__movie {
+    .container-fluid {
+      padding: 0;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .detail__movie {
+    padding: 0 $pd-2 + $pd-0;
+  }
+}

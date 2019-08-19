@@ -1,0 +1,26 @@
+<ng-container
+  *ngIf="detailShowtime && listTicket.length !== 0 && numberTicket.length !== 0">
+  <div class="row" *ngFor="let item of listTicket; let i=index">
+    <div class="col-sm-3 step1__type">
+      <span *ngIf="(item.key | split:'|':0) === 'Thuong'">Vé thường</span>
+      <span *ngIf="(item.key | split:'|':0) === 'Vip'">Vé VIP</span>
+    </div>
+    <div class="col-sm-2 step1__price">
+      <span>{{item.key | split:'|':1 | number:'1.0':'vi'}} đ</span>
+    </div>
+    <div class="col-sm-4 step1__number">
+      <button class="btn button__minus" (click)="editNumberTicket('minus', i)"
+        [ngClass]="{'disabled__button': numberTicket[i].number === 0}">
+        <i class="fa fa-minus"></i>
+      </button>
+      <input type="text" class="form-control" [(ngModel)]="numberTicket[i].number" disabled>
+      <button class="btn button__plus" (click)="editNumberTicket('plus', i)"
+        [ngClass]="{'disabled__button': numberTicket[i].number === maxNumberTicket || totalTicket === maxNumberTicket || numberTicket[i].number === maxEmptyTicket || totalTicket === maxEmptyTicket}">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+    <div class="col-sm-3 step1__amount">
+      <span [@animationAmount]="numberTicket[i].amount">{{numberTicket[i].amount | number: '1.0':'vi'}} đ</span>
+    </div>
+  </div>
+</ng-container>

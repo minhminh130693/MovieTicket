@@ -1,0 +1,29 @@
+.star__rating {
+  white-space: nowrap;
+
+  .mat-icon-button {
+    width: 30px !important;
+    height: 30px !important;
+    line-height: $line-height-1 + 6 !important;
+  }
+
+  .button__star {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .disabled__button {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .star__rating {
+    .mat-icon-button {
+      width: 22px !important;
+      height: 22px !important;
+      line-height: $line-height-1 + 2 !important;
+    }
+  }
+}

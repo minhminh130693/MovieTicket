@@ -1,0 +1,17 @@
+<div class="movie__item">
+  <span class="badge badge-danger">C13</span>
+  <app-star-rating class="movie__star" [rating]="4" [disabledClick]="true"></app-star-rating>
+  <img [src]="movie.hinhAnh" alt="Movie">
+  <div class="overlay">
+    <ng-container *ngIf="movie.trailer != '' && movie.trailer">
+      <a class="play__button" data-toggle="modal" href="#modalTrailer" (click)="viewTrailer()"><i
+          class="fa fa-play"></i></a>
+    </ng-container>
+    <ng-container *ngIf="isShowing">
+      <button type="button" class="btn section__button overlay__button" (click)="buyTicket(movie.maPhim)">MUA VÉ</button>
+    </ng-container>
+    <a class="overlay__link" [routerLink]="['/detail-movie-page', movie.maPhim]"></a>
+  </div>
+</div>
+<h6><a [routerLink]="['/detail-movie-page', movie.maPhim]">{{movie.tenPhim}}</a></h6>
+<p>120 phút - {{movie.danhGia}} IMDb</p>

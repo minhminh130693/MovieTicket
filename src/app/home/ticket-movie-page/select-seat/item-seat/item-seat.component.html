@@ -1,0 +1,25 @@
+<ng-container *ngIf="seat && selectedTicket">
+  <button class="btn" *ngIf="indexSeat < 20"
+    (click)="selectSeat((indexSeat >= 10 ? (indexSeat + 1 - 10) : (indexSeat + 1)), (indexSeat >= 10 ? 1 : 0))"
+    [disabled]="seat.daDat || (selectedTicket.length === 1 && seat.loaiGhe !== selectedTicket[0].loaiGhe)"
+    [ngClass]="{seat__booked: seat.daDat, seat__selected: statusSelect, seat__vip: seat.loaiGhe === 'Vip'}">
+    <span *ngIf="(selectedTicket.length === 1 && seat.loaiGhe === selectedTicket[0].loaiGhe) || selectedTicket.length > 1; else NotAllowButton">
+      {{indexSeat >= 10 ? (indexSeat + 1 - 10) : (indexSeat + 1)}}</span>
+  </button>
+  <button class="btn" *ngIf="indexSeat >= 20 && indexSeat < 32" (click)="selectSeat((indexSeat - 20) + 1, 2)"
+    [disabled]="seat.daDat || (selectedTicket.length === 1 && seat.loaiGhe !== selectedTicket[0].loaiGhe)"
+    [ngClass]="{seat__booked: seat.daDat, seat__selected: statusSelect, seat__vip: seat.loaiGhe === 'Vip'}">
+    <span *ngIf="(selectedTicket.length === 1 && seat.loaiGhe === selectedTicket[0].loaiGhe) || selectedTicket.length > 1; else NotAllowButton">
+      {{ (indexSeat - 20) + 1 }}</span>
+  </button>
+  <button class="btn" *ngIf="indexSeat >= 32"
+    (click)="selectSeat((indexSeat - 32) - ((((indexSeat - 32) - ((indexSeat - 32) % 16)) / 16) * 16) + 1, (((indexSeat - 32) - ((indexSeat - 32) % 16)) / 16) + 3)"
+    [disabled]="seat.daDat || (selectedTicket.length === 1 && seat.loaiGhe !== selectedTicket[0].loaiGhe)"
+    [ngClass]="{seat__booked: seat.daDat, seat__selected: statusSelect, seat__vip: seat.loaiGhe === 'Vip'}">
+    <span *ngIf="(selectedTicket.length === 1 && seat.loaiGhe === selectedTicket[0].loaiGhe) || selectedTicket.length > 1; else NotAllowButton">
+      {{ (indexSeat - 32) - ((((indexSeat - 32) - ((indexSeat - 32) % 16)) / 16) * 16) + 1 }}</span>
+  </button>
+  <ng-template #NotAllowButton>
+    <span class="seat__notallow"><i class="material-icons">close</i></span>
+  </ng-template>
+</ng-container>

@@ -1,0 +1,538 @@
+.detail__info {
+  padding-top: $pd-4 - $pd-2;
+  padding-bottom: $pd-3 + $pd-1;
+
+  > .nav-tabs {
+    border-bottom: none;
+    padding-bottom: $pd-2 + $pd-1;
+
+    .nav-link {
+      border: none;
+      @include text($color-white-0, $fs-3 - 2, $fw-bold-1);
+      -webkit-transition: all 0.35s;
+      transition: all 0.35s;
+
+      &:hover {
+        @include text($color-red-0, $fs-3, $fw-bold-2);
+      }
+    }
+
+    .active {
+      background-color: unset !important;
+      @include text($color-red-0, $fs-3, $fw-bold-2);
+    }
+  }
+
+  > .nav {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  > .tab-content {
+    padding: 0 $pd-5 + $pd-1;
+
+    // showtime tab
+    #showtime__movie {
+      background: $color-white-0;
+      border-radius: 5px;
+      padding: $pd-2 + $pd-1 0;
+
+      > .row {
+        margin: 0;
+
+        .showtime__left {
+          border-right: 1px solid $color-gray-2;
+
+          .row {
+            padding-bottom: $pd-1 + $pd-0;
+            padding-top: $pd-1 + $pd-0;
+            border-bottom: 1px solid $color-gray-2;
+            position: relative;
+
+            .cinema__logo {
+              margin: auto 0;
+              padding-right: 0;
+
+              img {
+                width: 100%;
+              }
+            }
+
+            .cinema__title {
+              padding-right: 0;
+              padding-left: $pd-1;
+              margin: auto 0;
+              @include text($color-black-0, $fs-0 - 1, $fw-bold-2);
+              text-transform: uppercase;
+            }
+
+            .showtime__overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: $color-white-1;
+              opacity: 1;
+              -webkit-transition: all 0.35s;
+              transition: all 0.35s;
+
+              &:hover {
+                opacity: 0;
+              }
+            }
+          }
+
+          .active__cinema {
+            background: $color-gray-2;
+
+            .showtime__overlay {
+              opacity: 0;
+            }
+          }
+
+          .row__last {
+            border-bottom: none;
+          }
+        }
+
+        .showtime__right {
+          padding: 0;
+
+          .showtime__date {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: $pd-2 - $pd-0 0;
+            text-align: center;
+            overflow: auto;
+
+            a {
+              display: block;
+              @include text($color-black-0, $fs-0, $fw-bold-2);
+              -webkit-transition: all 0.35s;
+              transition: all 0.35s;
+              width: 110px;
+
+              span {
+                display: block;
+              }
+
+              &:hover {
+                @include text($color-red-0, $fs-0, $fw-bold-2);
+              }
+            }
+
+            .active__date {
+              a {
+                @include text($color-red-0, $fs-0, $fw-bold-2);
+              }
+            }
+          }
+
+          .showtime__detail {
+            padding: $pd-2;
+            height: 350px;
+            overflow-y: auto;
+
+            .showtime__item {
+              border-bottom: 1px solid $color-gray-2;
+              padding-bottom: $pd-2;
+
+              .showtime__item-image {
+                text-align: center;
+                padding-right: 0;
+
+                img {
+                  width: 100%;
+                }
+              }
+
+              .showtime__item-content {
+                margin: auto 0;
+                cursor: pointer;
+
+                p {
+                  @include text($color-black-0, $fs-0 + 3, $fw-bold-2);
+                  margin: 0;
+                }
+
+                span {
+                  display: block;
+                  line-height: $line-height-1;
+                  @include text($color-black-1, $fs-0, $fw-bold-2);
+                  padding: $pd-0 0;
+
+                  .showtime__map {
+                    @include text($color-red-1, $fs-0, $fw-bold-2);
+                    padding-left: $pd-1;
+                  }
+                }
+                .showtime__time {
+                  @include text($color-red-0, $fs-3, $fw-bold-2);
+                  -webkit-transition: all 0.35s;
+                  transition: all 0.35s;
+                  padding-right: $pd-2;
+                  display: inline-block;
+
+                  &:hover {
+                    color: $color-yellow-0;
+                  }
+                }
+              }
+            }
+
+            .showtime__mess {
+              @include text($color-gray-1, $fs-0, $fw-bold-2);
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    // info tab
+    #infoTab {
+      .info__title {
+        @include text($color-white-0, $fs-2 - 3, $fw-bold-2);
+        line-height: $line-height-2 - 2;
+      }
+
+      p {
+        &.info__title {
+          margin-bottom: 0;
+          margin-top: $mg-1;
+        }
+
+        &.info__content {
+          margin-bottom: $mg-3;
+        }
+      }
+
+      .info__trailer {
+        margin-top: $mg-2;
+      }
+
+      .info__content {
+        @include text($color-gray-0, $fs-2 - 3, $fw-bold-1);
+        line-height: $line-height-2;
+      }
+    }
+
+    // rate tab
+    #rateTab {
+      width: 70%;
+      margin: 0 auto;
+
+      .rate__content {
+        background: $color-white-0;
+        padding: $pd-1 $pd-2 $pd-1 0;
+        border-radius: 5px;
+
+        .row {
+          margin: 0;
+          margin-bottom: $mg-0;
+
+          .rate__avatar {
+            text-align: center;
+            margin: auto 0;
+            padding: 0;
+
+            img {
+              width: 60%;
+              border-radius: 50%;
+              border: 2px solid $color-gray-0;
+            }
+          }
+
+          .rate__info {
+            margin: auto 0;
+            padding: 0;
+
+            p {
+              margin-bottom: 0;
+              @include text($color-red-0, $fs-0, $fw-bold-2);
+            }
+          }
+
+          .rate__submit {
+            text-align: right;
+            padding: 0;
+            margin: auto 0;
+
+            .section__button {
+              @include text($color-white-0, $fs-0 + 1, $fw-bold-1);
+            }
+
+            button {
+              &:focus {
+                outline: none;
+              }
+            }
+          }
+        }
+
+        mat-form-field {
+          padding-left: $pd-2;
+          width: 100%;
+
+          textarea {
+            border: none;
+            @include text($color-gray-3, $fs-0 + 1, $fw-bold-2);
+            line-height: $line-height-1 + 2;
+          }
+
+          .mat-form-field-label {
+            margin-top: $mg-0;
+            @include text($color-gray-3, $fs-0, $fw-bold-2);
+            line-height: $line-height-2 - 2;
+          }
+
+          .mat-form-field-infix {
+            position: static;
+          }
+        }
+
+        .rate__question {
+          margin: auto 0;
+          padding: 0;
+
+          a {
+            @include text($color-red-4, $fs-0 + 1, $fw-bold-2);
+            margin-bottom: 0;
+            display: block;
+          }
+        }
+      }
+
+      .rate__list {
+        .rate__comment {
+          margin-top: $mg-2;
+          background: $color-white-0;
+          border-radius: 3px;
+
+          .row {
+            padding-top: $pd-1;
+
+            .rate__image {
+              padding-left: 0;
+              text-align: right;
+              padding-right: $pd-1 + $pd-0;
+
+              img {
+                width: 60%;
+                border-radius: 50%;
+                border: 2px solid $color-gray-0;
+              }
+            }
+
+            .rate__time {
+              padding: $pd-1 0 0;
+
+              p {
+                margin-bottom: 0;
+                @include text($color-black-0, $fs-0, $fw-bold-2);
+              }
+
+              span {
+                @include text($color-black-4, $fs-1 - 1, $fw-bold-2);
+              }
+            }
+
+            .rate__vote {
+              padding: 0;
+              text-align: center;
+            }
+          }
+
+          .rate__detail {
+            padding: $pd-1 $pd-2 $pd-2;
+            @include text($color-black-2, $fs-0, $fw-bold-2);
+          }
+        }
+
+        .button__viewmore {
+          padding-bottom: $pd-1;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-gray-2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-gray-4;
+  border-radius: 5px;
+  opacity: 0.4;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1180px) {
+  .detail__info {
+    > .tab-content {
+      padding: 0 $pd-5 - $pd-1;
+
+      #infoTab {
+        .info__content,
+        .info__title {
+          padding-right: 0;
+        }
+      }
+
+      #rateTab {
+        width: 82%;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .detail__info {
+    > .tab-content {
+      padding: 0 $pd-2;
+
+      #showtime__movie {
+        > .row {
+          .showtime__right {
+            .showtime__date {
+              a {
+                width: 90px;
+              }
+            }
+          }
+        }
+      }
+
+      #rateTab {
+        width: 90%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .detail__info {
+    > .tab-content {
+      padding: 0;
+
+      #showtime__movie {
+        > .row {
+          .showtime__left {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            overflow-x: scroll;
+
+            .row {
+              display: inline-block;
+              margin: 0;
+              min-width: 120px;
+              text-align: center;
+
+              .cinema__logo {
+                padding: 0;
+                margin-bottom: $mg-1;
+
+                img {
+                  width: 40%;
+                }
+              }
+
+              .cinema__title {
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
+
+      #rateTab {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .detail__info {
+    > .tab-content {
+      #showtime__movie {
+        > .row {
+          .showtime__left {
+            .row {
+              min-width: 100px;
+
+              .cinema__logo {
+                img {
+                  width: 30%;
+                }
+              }
+
+              .cinema__title {
+                font-size: $fs-1;
+              }
+            }
+          }
+
+          .showtime__right {
+            .showtime__date {
+              a {
+                font-size: $fs-0 - 1;
+
+                &:hover {
+                  font-size: $fs-0 - 1;
+                }
+              }
+
+              .active__date {
+                a {
+                  font-size: $fs-0 - 1;
+                }
+              }
+            }
+
+            .showtime__detail {
+              .showtime__item {
+                .showtime__item-content {
+                  p {
+                    font-size: $fs-0 + 1;
+                  }
+
+                  span {
+                    font-size: $fs-0 - 1;
+
+                    .showtime__map {
+                      font-size: $fs-0 - 1;
+                    }
+                  }
+                  .showtime__time {
+                    font-size: $fs-2;
+                  }
+                }
+              }
+
+              .showtime__mess {
+                font-size: $fs-0 - 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

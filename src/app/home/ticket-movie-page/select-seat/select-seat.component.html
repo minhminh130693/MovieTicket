@@ -1,0 +1,156 @@
+<div class="ticket__step2" *ngIf="detailMovie && listCinema && detailShowtime">
+  <div class="row">
+    <div class="col-lg-9 step2__left">
+      <div class="container">
+        <div class="step2__header">
+          <ng-container *ngFor="let item of detailMovie.lichChieu" [ngSwitch]="item.ngayChieuGioChieu | date: 'EEE'">
+            <ng-container *ngIf="item.maLichChieu === detailShowtime.maLichChieu">
+              <ng-container *ngFor="let i of listCinema">
+                <ng-container *ngIf="i.maHeThongRap === item.thongTinRap.maHeThongRap">
+                  <div class="row">
+                    <div class="col-3 col-sm-2 step2__logo">
+                      <img *ngIf="i.logo" [src]="i.logo" alt="Logo">
+                    </div>
+                    <div class="col-9 col-sm-7 step2__info">
+                      <p>{{detailShowtime.tenCumRap}}</p>
+                      <span *ngSwitchCase="'Mon'">Thứ 2</span>
+                      <span *ngSwitchCase="'Tue'">Thứ 3</span>
+                      <span *ngSwitchCase="'Wed'">Thứ 4</span>
+                      <span *ngSwitchCase="'Thu'">Thứ 5</span>
+                      <span *ngSwitchCase="'Fri'">Thứ 6</span>
+                      <span *ngSwitchCase="'Sat'">Thứ 7</span>
+                      <span *ngSwitchCase="'Sun'">Chủ Nhật</span>
+                      <span> ({{item.ngayChieuGioChieu | date: 'dd-MM-yyyy'}}) -
+                        {{item.ngayChieuGioChieu | date: 'HH:mm'}} - {{detailShowtime.tenRap}}</span>
+                    </div>
+                    <div class="col-12 col-sm-3 step2__time">
+                      <span>Thời gian giữ ghế</span>
+                      <p *ngIf="selectSeat">
+                        <countdown [config]="{leftTime: 300}" (finished)="onFinished()">$!m!:$!s!</countdown>
+                      </p>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div class="step2__middle">
+          <div class="row">
+            <div class="col-md-3 step2__middle-item1">
+              <button class="btn" (click)="backSelectTicket()"><i class="fa fa-long-arrow-left"></i> Quay Lại</button>
+            </div>
+            <div class="col-md-3 step2__middle-item2">
+              <p>Ghế: </p>
+              <ng-container *ngIf="listSelectedSeatOrderBy && listSelectedSeatOrderBy.length !== 0">
+                <ng-container *ngFor="let item of listSelectedSeatOrderBy; let i=index">
+                  <span class="step2__numberSeat">{{item.seat}}</span>
+                  <span *ngIf="(i + 1) < listSelectedSeatOrderBy.length">, </span>
+                </ng-container>
+              </ng-container>
+            </div>
+            <div class="col-md-3 step2__middle-item3">
+              <p>Tổng tiền: </p>
+              <span class="step2__total">{{totalAmount | number:'1.0':'vi'}} đ</span>
+            </div>
+            <div class="col-md-3 step2__middle-item4">
+              <button class="btn" [disabled]="!statusSelectedSeat" data-toggle="modal" data-target="#modalConfirm">Đặt
+                Vé <i class="fa fa-long-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="step2__detail">
+          <div class="step2_seats" *ngIf="detailShowtime">
+            <div class="row">
+              <div class="col-1 step2__alphabet">
+                <ng-container *ngFor="let item of detailShowtime.danhSachGhe; let i=index">
+                  <p *ngIf="i % 10 === 0 && i < 20">{{listAlphabet[ i===0 ? i : (i / 10)]}}</p>
+                  <p *ngIf="(i + 1) % 32 === 0 && i >= 20 && i < 32">{{listAlphabet[((i + 1) / 32) + 1]}}</p>
+                  <p *ngIf="(i + 1 - 32) % 16 === 0 && i >= 32">{{listAlphabet[(((i + 1) - 32)/16) + 2]}}</p>
+                </ng-container>
+              </div>
+              <div class="col-11 step2__number">
+                <div class="step2__screen step2__shadow"></div>
+                <p>Màn hình</p>
+                <div class="step2_seat">
+                  <ng-container *ngFor="let item of detailShowtime.danhSachGhe; let i=index">
+                    <app-item-seat [seat]="item" [indexSeat]="i" [selectedTicket]="selectedTicket"
+                      (eventSelected)="selectedSeat($event)"></app-item-seat>
+                    <br *ngIf="(i + 1) % 10 === 0 && i < 20">
+                    <br *ngIf="(i + 1) % 32 === 0 && i >= 20 && i < 32">
+                    <br *ngIf="(i + 1 - 32) % 16 === 0 && i >= 32">
+                  </ng-container>
+                </div>
+              </div>
+              <div class="seats__color">
+                <p><i class="fa fa-square"></i>Ghế đang chọn</p>
+                <p><i class="fa fa-square"></i>Ghế đã bán</p>
+                <p><i class="fa fa-square"></i>Ghế thường</p>
+                <p><i class="fa fa-square"></i>Ghế VIP</p>
+                <p><i class="material-icons">close</i>Ghế không được chọn</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 step2__right">
+      <div class="container">
+        <div class="step2__content">
+          <img *ngIf="detailMovie.hinhAnh" [src]="detailMovie.hinhAnh" alt="Movie">
+          <p><span class="badge badge-warning">C13</span>{{detailMovie.tenPhim}}</p>
+          <div class="row">
+            <div class="col-md-2 step2__title"><span>Rạp: </span></div>
+            <div class="col-md-10 step2__infor"><span>{{detailShowtime.tenCumRap}}</span></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 step2__title"><span>Suất chiếu: </span></div>
+            <div class="col-md-8 step2__infor">
+              <ng-container *ngFor="let item of detailMovie.lichChieu"
+                [ngSwitch]="item.ngayChieuGioChieu | date: 'EEE'">
+                <ng-container *ngIf="item.maLichChieu === detailShowtime.maLichChieu">
+                  <span *ngSwitchCase="'Mon'">Thứ 2</span>
+                  <span *ngSwitchCase="'Tue'">Thứ 3</span>
+                  <span *ngSwitchCase="'Wed'">Thứ 4</span>
+                  <span *ngSwitchCase="'Thu'">Thứ 5</span>
+                  <span *ngSwitchCase="'Fri'">Thứ 6</span>
+                  <span *ngSwitchCase="'Sat'">Thứ 7</span>
+                  <span *ngSwitchCase="'Sun'">Chủ Nhật</span>
+                  <span> ({{item.ngayChieuGioChieu | date: 'dd-MM-yyyy'}})</span>
+                  <p>{{item.ngayChieuGioChieu | date: 'HH:mm'}} - {{detailShowtime.tenRap}}</p>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 step2__title"><span>Ghế: </span></div>
+            <div class="col-md-10 step2__infor">
+              <ng-container *ngIf="listSelectedSeatOrderBy && listSelectedSeatOrderBy.length !== 0">
+                <ng-container *ngFor="let item of listSelectedSeatOrderBy; let i=index">
+                  <span class="step2__numberSeat">{{item.seat}}</span>
+                  <span *ngIf="(i + 1) < listSelectedSeatOrderBy.length">, </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 step2__title"><span>Tổng tiền: </span></div>
+            <div class="col-md-8 step2__infor"><span class="step2__total">{{totalAmount | number:'1.0':'vi'}} đ</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 step2__button"><button class="btn section__button2" (click)="backSelectTicket()">Quay
+                Lại</button></div>
+            <div class="col-md-6 step2__button">
+              <button class="btn section__button2" [disabled]="!statusSelectedSeat" data-toggle="modal"
+                data-target="#modalConfirm">Đặt Vé</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-modal-confirm [detailShowtime]="detailShowtime" [detailMovie]="detailMovie" [totalAmount]="totalAmount"
+    [totalNumber]="totalNumber" [listSelectedSeatOrderBy]="listSelectedSeatOrderBy"
+    (confirmEvent)="confirmTicketEvent($event)"></app-modal-confirm>
+</div>

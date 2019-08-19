@@ -1,0 +1,144 @@
+.footer {
+  background-image: url("./../img/bg-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+
+  .footer__content {
+    padding: $pd-3 0;
+    border-bottom: 1px solid $color-gray-1;
+
+    h5 {
+      @include text($color-gray-0, $fs-0, $fw-bold-2);
+      letter-spacing: 1px;
+    }
+
+    .footer__intro,
+    .footer__services {
+      line-height: $line-height-2;
+
+      a {
+        @include text($color-gray-1, $fs-1, $fw-bold-2);
+        display: block;
+        text-decoration: none;
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+
+        &:hover {
+          @include text($color-red-4, $fs-1, $fw-bold-2);
+        }
+
+        i {
+          margin-right: $mg-0;
+        }
+      }
+    }
+
+    .footer__connect {
+      i {
+        @include text($color-white-0, $fs-3 + 4, $fw-bold-0);
+        width: 50px;
+        height: 50px;
+        margin: $mg-1 $mg-1 $mg-1 0;
+        line-height: $line-height-3;
+        text-align: center;
+        -webkit-transition: all 0.35s;
+        transition: all 0.35s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .fa-facebook-f {
+        background: $color-blue-0;
+      }
+
+      .fa-twitter {
+        background: $color-blue-1;
+      }
+
+      .fa-youtube {
+        background: $color-red-3;
+      }
+    }
+  }
+
+  .footer__copyright {
+    @include text($color-gray-1, $fs-0, $fw-bold-1);
+    padding: $pd-1 0;
+
+    .footer__logo {
+      text-align: right;
+
+      img {
+        width: 20%;
+      }
+    }
+
+    .footer__text {
+      p {
+        margin-bottom: 0;
+        font-style: italic;
+        padding-top: $pd-0;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .footer {
+    .footer__copyright {
+      .footer__logo {
+        img {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    .footer__content {
+      padding-bottom: 0;
+
+      .footer__intro,
+      .footer__services {
+        margin-bottom: $mg-3;
+      }
+    }
+
+    .footer__copyright {
+      .footer__logo {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    .footer__content {
+      padding-left: $pd-3;
+      padding-bottom: $pd-3;
+    }
+
+    .footer__copyright {
+      .footer__logo {
+        text-align: center;
+
+        img {
+          width: 20%;
+        }
+      }
+
+      .footer__text {
+        text-align: center;
+      }
+    }
+  }
+}

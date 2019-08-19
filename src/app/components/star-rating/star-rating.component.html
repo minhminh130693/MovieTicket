@@ -1,0 +1,12 @@
+<div class="star__rating">
+  <ng-container *ngIf="rating">
+    <ng-container *ngFor="let item of ratingArray; let i=index">
+      <button mat-icon-button color="accent" class="button__star" (click)="onClick(i+1)"
+        [ngClass]="{'disabled__button': disabledClick}">
+        <mat-icon>
+          {{showIcon(item)}}
+        </mat-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+</div>
